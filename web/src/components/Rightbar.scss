@@ -1,0 +1,15 @@
+@use "utils/variables";
+
+.rightbar {
+    position: absolute;
+    top: variables.$topbar-top;
+    right: 0;
+
+    width: 200px;
+    height: calc(100vh - variables.$topbar-top);
+    background-color: darkgrey;
+    
+    .rightbar__title {
+        text-align: center;
+    }
+}

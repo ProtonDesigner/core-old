@@ -1,0 +1,19 @@
+{
+  "name": "proto",
+  "version": "1.0.0",
+  "description": "An app-prototyping application",
+  "main": "main.js",
+  "author": "TechStudent10",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^21.2.0"
+  },
+  "scripts": {
+    "electron": "electron .",
+    "web_server": "cd web && yarn start",
+    "start": "concurrently -n electron,web-server \"yarn:electron*\" \"yarn:web_server\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}

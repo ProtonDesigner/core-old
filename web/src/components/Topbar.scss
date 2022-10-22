@@ -1,0 +1,30 @@
+@use "utils/variables";
+
+.topbar {
+    position: absolute;
+    width: 100vw;
+    height: variables.$topbar-top;
+    background-color: grey;
+
+    .play__button {
+        position: relative;
+        width: 90px;
+        height: 45px;
+        background-color: hsl(0, 0%, 11%);
+        text-align: center;
+        border-radius: 0.5rem;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .fa-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            color: white;
+        }
+    }
+}
