@@ -9,11 +9,15 @@ export default function App(props) {
     const [elements, setElements] = useState([
         {
             "id": 1,
-            "name": "Text"
+            "props": {
+                "text": "This is Text"
+            }
         },
         {
             "id": 2,
-            "name": "Image"
+            "props": {
+                "text": "This is a Title"
+            }
         }
     ]);
 
@@ -22,7 +26,7 @@ export default function App(props) {
             <Topbar />
             <Sidebar elements={elements} />
             <Rightbar />
-            <Preview />
+            <Preview elements={elements} />
         </div>
     )
 }

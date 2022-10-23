@@ -1,9 +1,12 @@
 import React from 'react';
 import "./Sidebar.scss"
 
+import { elements_list as ELEMENTS_LIST } from "./utils/elements_list";
+
 const Element = (props) => {
+    const name = ELEMENTS_LIST[props.element_id]["name"];
     return <div className="sidebar__element">
-        <h4>{props.element_name}</h4>
+        <h4>{name}</h4>
     </div>
 }
 
@@ -14,7 +17,7 @@ export default function Sidebar(props) {
             <br />
             {props.elements && props.elements.map((element) => {
                 return <>
-                    <Element key={element.id} element_name={element.name} />
+                    <Element key={element.id} element_id={element.id} />
                     <div style={{
                         width: '100%',
                         height: '2.5px',
