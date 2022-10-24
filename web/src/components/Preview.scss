@@ -5,6 +5,7 @@
     transform: translate(-50%, -50%);
     
     padding-top: 50px;
+    word-wrap: break-word;
 
     .preview__outerbezel {
         width: 300px;
@@ -29,6 +30,9 @@
             width: 90%;
             height: 95%;
             background-color: white;
+
+            padding-top: 4px;
+            padding-left: 4px;
         }
     }
 }

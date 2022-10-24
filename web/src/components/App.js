@@ -8,17 +8,17 @@ import Topbar from './Topbar';
 export default function App(props) {
     const [elements, setElements] = useState([
         {
-            "id": 1,
-            "uid": Math.random(),
-            "props": {
-                "text": "This is Text"
-            }
-        },
-        {
             "id": 2,
             "uid": Math.random(),
             "props": {
                 "text": "This is a Title"
+            }
+        },
+        {
+            "id": 1,
+            "uid": Math.random(),
+            "props": {
+                "text": "This is Text"
             }
         }
     ]);
