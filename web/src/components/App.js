@@ -23,6 +23,7 @@ export default function App(props) {
         }
     ]);
     const [activeElement, setActiveElement] = useState(null);
+    const [updatedState, updateState] = useState(1);
 
     console.log(activeElement)
 
@@ -30,7 +31,7 @@ export default function App(props) {
         <div className="app">
             <Topbar />
             <Sidebar elements={elements} setActiveElement={setActiveElement} />
-            <Rightbar activeElement={activeElement} />
+            <Rightbar activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
             <Preview elements={elements} />
         </div>
     )

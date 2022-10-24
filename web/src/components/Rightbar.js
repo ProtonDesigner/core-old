@@ -16,6 +16,8 @@ export default function Rightbar(props) {
                     <h5>{field.name}</h5>
                     <input type={field.type} value={props.activeElement["props"][field.prop_name]} onChange={(e) => {
                         props.activeElement["props"][field.prop_name] = e.target.value;
+                        // Used to render the page
+                        props.updateState(props.updatedState + 1);
                     }} />
                 </div>
             })}
