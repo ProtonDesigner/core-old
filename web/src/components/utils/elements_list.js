@@ -6,12 +6,26 @@ const elements_list = {
     1: {
         "id": 1,
         "name": "Text",
-        "component": Text
+        "component": Text,
+        "fields": [
+            {
+                "type": "text",
+                "name": "Text",
+                "prop_name": "text"
+            }
+        ]
     },
     2: {
         "id": 2,
         "name": "Title",
-        "component": Title
+        "component": Title,
+        "fields": [
+            {
+                "type": "text",
+                "name": "Title",
+                "prop_name": "text"
+            }
+        ]
     }
 }
 

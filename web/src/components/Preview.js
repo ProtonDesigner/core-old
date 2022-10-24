@@ -13,7 +13,7 @@ export default function Preview(props) {
                     {elements && elements.map(element => {
                         const id = element.id;
                         const Component = ELEMENTS_LIST[id]["component"];
-                        return <Component {...element.props} />
+                        return <Component key={element.uid} {...element.props} />
                     })}
                 </div>
             </div>
