@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import "./App.scss"
 import Preview from './Preview';
-import Rightbar from './Rightbar';
-import Sidebar from './Sidebar';
+import Rightbar from './Inspector';
+import Sidebar from './Hierarchy';
 import Topbar from './Topbar';
 
 export default function App(props) {

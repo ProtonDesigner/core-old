@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Rightbar.scss"
+import "./Inspector.scss"
 
 import { elements_list as ELEMENTS_LIST } from './utils/elements_list';
 

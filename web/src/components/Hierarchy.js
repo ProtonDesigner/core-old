@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import "./Sidebar.scss"
+import "./Hierarchy.scss"
 
 import { elements_list as ELEMENTS_LIST } from "./utils/elements_list";
 
