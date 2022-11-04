@@ -6,6 +6,10 @@
     height: variables.$topbar-top;
     background-color: grey;
 
+    &.dark {
+        background-color: hsl(0, 0%, 15%);
+    }
+
     .play__button {
         position: relative;
         width: 90px;

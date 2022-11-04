@@ -9,7 +9,7 @@ export default function Rightbar(props) {
     const fields = elementID ? ELEMENTS_LIST[elementID]["fields"] : [];
 
     return (
-        <div className={`rightbar ${props.darkMode == "dark" ? "dark" : "light"}`}>
+        <div className={`rightbar ${props.darkMode == 1 ? "dark" : "light"}`}>
             <h3 className="rightbar__title">Inspector</h3>
             {fields && fields.map((field) => {
                 return <div className="rightbar__field">
