@@ -1,5 +1,17 @@
+@use "utils/variables";
+
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
 
 .app {
     font-family: 'Readex Pro', sans-serif;
+
+    &.dark {
+        background-color: variables.$dark-mode-background;
+        color: variables.$dark-mode-content-color;
+    }
+
+    &.light {
+        background-color: variables.$light-mode-background;
+        color: variables.$light-mode-content-color;
+    }
 }
