@@ -6,7 +6,8 @@
   "author": "TechStudent10",
   "license": "MIT",
   "dependencies": {
-    "electron": "^21.2.0"
+    "electron": "^21.2.0",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "electron": "electron .",

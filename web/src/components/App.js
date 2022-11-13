@@ -4,29 +4,18 @@ import Preview from './Preview';
 import Rightbar from './Inspector';
 import Sidebar from './Hierarchy';
 import Topbar from './Topbar';
+import AddElementDialog from './AddElementDialog';
 
 export default function App(props) {
-    const [elements, setElements] = useState([
-        {
-            "id": 2,
-            "uid": Math.random(),
-            "props": {
-                "text": "This is a Title"
-            }
-        },
-        {
-            "id": 1,
-            "uid": Math.random(),
-            "props": {
-                "text": "This is Text"
-            }
-        }
-    ]);
+    const [elements, setElements] = useState([]);
     const [activeElement, setActiveElement] = useState(null);
     const [updatedState, updateState] = useState(1);
     const [darkMode, setDarkMode] = useState(0);
+    const [showElementDialog, setElementDialog] = useState(false);
 
     // Dark mode code
+
+    console.log(activeElement)
 
     useEffect(() => {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -41,7 +30,8 @@ export default function App(props) {
 
     return (
         <div className={`app ${darkMode == 1 ? "dark" : "light"}`}>
-            <Topbar darkMode={darkMode} />
+            <Topbar darkMode={darkMode} elements={elements} setElements={setElements} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
+            <AddElementDialog show={showElementDialog} setElements={setElements} elements={elements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
             <Sidebar darkMode={darkMode} elements={elements} setActiveElement={setActiveElement} />
             <Rightbar darkMode={darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
             <Preview darkMode={darkMode} elements={elements} />

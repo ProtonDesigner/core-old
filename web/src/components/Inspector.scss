@@ -9,11 +9,27 @@
     height: calc(100vh - variables.$topbar-top);
     background-color: darkgrey;
     
-    .rightbar__title {
-        text-align: center;
+    text-align: center;
+    h5 {
+        font-weight: bolder;
+    }
+
+    input {
+        padding: 5px;
+        border-radius: 5rem;
+        outline: 0;
+        border: 5px solid grey;
+        background-color: white;
+        color: black;
     }
 
     &.dark {
         background-color: hsl(0, 0%, 15%);
+
+        input {
+            border: 5px solid hsl(0, 0%, 5%);
+            color: white;
+            background-color: hsl(0, 0%, 20%);
+        }
     }
 }

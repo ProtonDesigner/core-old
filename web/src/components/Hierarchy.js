@@ -5,7 +5,7 @@ import { elements_list as ELEMENTS_LIST } from "./utils/elements_list";
 
 const Element = (props) => {
     const element_ref = useRef()
-    const name = ELEMENTS_LIST[props.element_id]["name"];
+    const name = props.element.alias == "" ? ELEMENTS_LIST[props.element.id].alias : props.element.alias;
     return <div ref={element_ref} onClick={() => {
             props.onClick()
         }} className="sidebar__element">
@@ -24,7 +24,7 @@ export default function Sidebar(props) {
                 return <>
                     <Element setActiveElementUID={setActiveElementUID} uid={element.uid} key={element.uid} onClick={() => {
                         props.setActiveElement(element)
-                    }} element_id={element.id} activeElementUID={activeElementUID} />
+                    }} element={element} activeElementUID={activeElementUID} />
                     <div style={{
                         width: '100%',
                         height: '2.5px',
