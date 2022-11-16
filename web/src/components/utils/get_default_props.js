@@ -8,6 +8,10 @@ let get_default_props = (elementID) => {
         default_props[field.prop_name] = field.default_value;
     })
 
+    // Add default position props
+    default_props.x = 0;
+    default_props.y = 0;
+
     return default_props;
 }
 

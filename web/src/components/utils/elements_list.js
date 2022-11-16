@@ -2,6 +2,14 @@ import Text from "../elements/Text";
 import Title from "../elements/Title";
 import Image from "../elements/Image";
 
+// Element Structure
+// {
+//     id: Element ID here,
+//     uid: Unique ID here,
+//     props: Getting the default fields or "props",
+//     alias: Element Alias here (what is the element called in the hierarchy)
+// }
+
 const elements_list = {
     1: {
         "id": 1,
