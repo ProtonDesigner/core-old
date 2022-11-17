@@ -1,9 +1,10 @@
 import React from "react";
+import BaseComponent from "../base_component";
 
 export default function Title(props) {
     return (
-        <div classname="app__title">
+        <BaseComponent classname="app__title">
             <h2>{props.text}</h2>
-        </div>
+        </BaseComponent>
     )
 }

@@ -5,3 +5,5 @@ const generateStyle = (x, y) => {
         left: y
     }
 }
+
+export { generateStyle }
