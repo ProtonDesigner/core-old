@@ -1,7 +1,7 @@
 <img src="images/Proton%20banner.png">
 
 <h1 align="center">Proton</h1>
-<p align="center">Simple prototyping and designing software for teams and individuals.</p>
+<p align="center">Simple prototyping and design software for teams and individuals.</p>
 
 ---
 
