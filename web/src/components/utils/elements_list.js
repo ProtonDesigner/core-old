@@ -1,6 +1,7 @@
 import Text from "../elements/Text";
 import Title from "../elements/Title";
 import Image from "../elements/Image";
+import Link from "../elements/Link";
 
 // Element Structure
 // {
@@ -55,6 +56,26 @@ const elements_list = {
                 "type": "text",
                 "name": "Alt text (accessibility)",
                 "prop_name": "alt",
+                "default_value": "Some dude dancing in 4K"
+            }
+        ]
+    },
+    4: {
+        "id": 4,
+        "name": "Link",
+        "component": Link,
+        "alias": "Link0",
+        "fields": [
+            {
+                "type": "text",
+                "name": "Link",
+                "prop_name": "link",
+                "default_value": "https://i.insider.com/602ee9ced3ad27001837f2ac?width=700"
+            },
+            {
+                "type": "text",
+                "name": "Text",
+                "prop_name": "text",
                 "default_value": "Some dude dancing in 4K"
             }
         ]
