@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Found a bug? Report it here!
-title: ''
+title: "[BUG] Brief Description"
 labels: bug
 assignees: TechStudent10
 
