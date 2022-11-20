@@ -1,0 +1,32 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: Brief Description of Bug"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Description of the bug
+      description: A description of the bug
+      placeholder: I clicked open but it closed instead!
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of our Proton are you running?
+    validations:
+      required: true
+  - type: checkboxes
+    id: no-other-issues
+    attributes:
+      label: There are no other issues pertaining to my issue.
+      description: By submitting this issue, you agree that you have checked for issues, opened and closed, that relate to your issue and that you have tried all/most of the fixes provided and that they do not work.
+      options:
+        - label: I agree
+          required: true
