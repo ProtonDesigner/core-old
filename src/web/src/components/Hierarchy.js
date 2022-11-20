@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import "./Hierarchy.scss"
 
-import { elements_list as ELEMENTS_LIST } from "./utils/elements_list";
+import { elements_list as ELEMENTS_LIST } from "../utils/elements_list";
 
 const Element = (props) => {
     const element_ref = useRef()

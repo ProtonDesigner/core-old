@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Preview.scss";
 
-import { elements_list as ELEMENTS_LIST } from "./utils/elements_list";
+import { elements_list as ELEMENTS_LIST } from "../utils/elements_list";
 
 export default function Preview(props) {
     const elements = props.elements;

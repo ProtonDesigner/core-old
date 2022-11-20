@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Inspector.scss"
 
-import { elements_list as ELEMENTS_LIST } from './utils/elements_list';
+import { elements_list as ELEMENTS_LIST } from '../utils/elements_list';
 
 export default function Rightbar(props) {
     // const activeElement = props.activeElement;

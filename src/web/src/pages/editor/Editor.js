@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import "./App.scss"
-import Preview from './Preview';
-import Rightbar from './Inspector';
-import Sidebar from './Hierarchy';
-import Topbar from './Topbar';
-import AddElementDialog from './AddElementDialog';
+import "./Editor.scss"
+import Preview from '../../components/Preview';
+import Rightbar from '../../components/Inspector';
+import Sidebar from '../../components/Hierarchy';
+import Topbar from '../../components/Topbar';
+import AddElementDialog from '../../components/AddElementDialog';
 
 export default function App(props) {
     const [elements, setElements] = useState([]);

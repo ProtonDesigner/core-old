@@ -1,8 +1,8 @@
 import React from 'react';
 import { v4 as uuidv4 } from "uuid";
 
-import { elements_list as ELEMENTS_LIST } from './utils/elements_list';
-import { get_default_props } from './utils/get_default_props';
+import { elements_list as ELEMENTS_LIST } from '../utils/elements_list';
+import { get_default_props } from '../utils/get_default_props';
 import "./AddElementDialog.scss";
 
 const AddElementDialog = (props) => {
