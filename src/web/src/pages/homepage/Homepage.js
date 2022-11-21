@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Homepage.scss";
 
 const SidebarElement = (props) => {
     return <div onClick={props.onClick} className="sidebar__element">
-        {props.icon}
-        {props.name}
+        <div className="sidebar__icon">{props.icon}</div>
+        <div style={{
+            height: "5px"
+        }} />
+        <div className="sidebar__name">{props.name}</div>
     </div>
 }
 
 const Sidebar = (props) => {
-    return <div className="homepage__sidebar">
-        <SidebarElement name="Home" onClick={() => console.log("yeet")} />
-        <SidebarElement name="Editor" onClick={() => props.setCurrentPageID(1)} />
+    const [expanded, setExpanded] = useState(false);
+    
+    return <div className={`homepage__sidebar ${expanded ? "expanded" : ""}`}>
+        <div className="sidebar__hamburger" onClick={() => setExpanded(!expanded)}>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <SidebarElement name="Home" icon={<i class="fa-solid fa-house"></i>} onClick={() => console.log("yeet")} />
+        <SidebarElement name="Editor" icon={<i class="fa-solid fa-file-pen"></i>} onClick={() => props.setCurrentPageID(1)} />
     </div>
 }
 

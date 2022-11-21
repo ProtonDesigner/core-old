@@ -1,0 +1,57 @@
+.homepage {
+    .homepage__sidebar {
+        background-color: hsl(0, 0%, 20);
+        width: 40px;
+        // padding: 10px;
+        height: 100vh;
+
+        .sidebar__element {
+            display: flex;
+            .sidebar__name {
+                display: none;
+            }
+
+            // width: 135px - 10px;
+            padding: 5px;
+
+            cursor: pointer;
+            user-select: none;
+
+            background-color: hsl(0, 0%, 15);
+
+            &:hover {
+                background-color: hsl(0, 0%, 10);
+            }
+
+            transition: width 0.3s, display 0.3s;
+            transition-timing-function: ease-in-out;
+        }
+
+        transition: width 0.3s;
+        transition-timing-function: ease-in-out;
+
+        .sidebar__hamburger {
+            cursor: pointer;
+
+            font-size: larger;
+            padding: 10px;
+
+            &:hover {
+                background-color: hsl(0, 0%, 10);
+            }
+        }
+
+        &.expanded {
+            width: 135px;
+
+            .sidebar__element {
+                .sidebar__name {
+                    display: block;
+                }
+                width: 135px - 10px;
+
+                transition: width 1s;
+            }
+        }
+    }
+}
