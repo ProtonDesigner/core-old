@@ -26,5 +26,8 @@
     "@electron-forge/maker-zip": "^6.0.3",
     "concurrently": "^7.4.0",
     "electron": "^21.2.0"
+  },
+  "solutions": {
+    "got": "^12.1.0"
   }
 }
