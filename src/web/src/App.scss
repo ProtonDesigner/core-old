@@ -1,9 +1,14 @@
 @use "utils/variables";
 
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300&display=swap');
+
+@font-face {
+    font-family: "Readex Pro";
+    src: url("ReadexPro-VariableFont_wght.ttf");
+}
 
 .app {
-    font-family: 'Readex Pro', sans-serif;
+    font-family: "Readex Pro", sans-serif;
 
     &.dark {
         background-color: variables.$dark-mode-background;

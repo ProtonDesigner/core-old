@@ -5,8 +5,11 @@ import { pages as PAGES } from "./utils/pages";
 
 export default function App(props) {
     const [currentPageID, setCurrentPageID] = useState(0);
+    const [currentPageProps, setCurrentPageProps] = useState({
+        setCurrentPageID: setCurrentPageID
+    });
     const Component = PAGES[currentPageID].component;
     return <div className="app">
-        <Component setCurrentPageID={setCurrentPageID} />
+        <Component currentPageProps={currentPageProps} setCurrentPageProps={setCurrentPageProps} {...currentPageProps} />
     </div>
 }
