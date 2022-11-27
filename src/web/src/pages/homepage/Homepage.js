@@ -43,7 +43,18 @@ const Sidebar = (props) => {
     </div>
 }
 
+const ProjectComponent = (props) => {
+    return <div className="homepage__project">
+        <h4>{props.name}</h4>
+        <p>By {props.author}</p>
+    </div>
+}
+
 const ProjectsView = (props) => {
+    const [projects, setProjects] = useState([]);
+    useEffect(() => {
+        
+    }, [])
     return <div className="homepage__projects">
         hello
     </div>
