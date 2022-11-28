@@ -8,6 +8,8 @@ import AddElementDialog from '../../components/AddElementDialog';
 
 import Project from '../../utils/project';
 
+import useKeyboardShortcut from "use-keyboard-shortcut"
+
 export default function App(props) {
     const [elements, setElements] = useState([]);
     const [activeElement, setActiveElement] = useState(null);
@@ -17,18 +19,33 @@ export default function App(props) {
 
     const project = new Project(props.projectName);
 
-    console.log(props.projectName)
-    useEffect(() => {
-        project.loadProject()
-    }, [])
-
-    setInterval(() => {
+    const { flushHeldKeys } = useKeyboardShortcut(["Control", "S"], shortcutKeys => {
+        project.elements = {}
+        elements.forEach(element => {
+            project.elements[element.uid] = element;
+        })
         project.saveProject()
-    }, 100)    
+    })
 
-    const updateElements = (newState) => {
-        setElements(newState);
-        project.elements = newState;
+    // console.log(props.projectName)
+    useEffect(() => {
+        project.loadProject((projectJSON) => {
+            const elementsList = []
+            Object.keys(projectJSON.elements).map((element) => {
+                elementsList.push(projectJSON.elements[element])
+            })
+            setElements(elementsList)
+        })
+    }, [])
+    // console.log(project.elements.toString("utf8"))
+    
+
+    // setInterval(() => {
+    // }, 500)    
+
+    const updateElements = (newElement) => {
+        project.addElement(newElement)
+        setElements([...elements, newElement]);
     }
 
     // Dark mode code
@@ -48,8 +65,8 @@ export default function App(props) {
 
     return (
         <div className={`app ${darkMode == 1 ? "dark" : "light"}`}>
-            <Topbar darkMode={darkMode} elements={elements} setElements={updateElements} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
-            <AddElementDialog show={showElementDialog} setElements={updateElements} elements={elements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
+            <Topbar darkMode={darkMode} elements={elements} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
+            <AddElementDialog show={showElementDialog} addElement={updateElements} elements={elements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
             <Sidebar darkMode={darkMode} elements={elements} setActiveElement={setActiveElement} />
             <Rightbar darkMode={darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
             <Preview darkMode={darkMode} elements={elements} />

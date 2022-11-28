@@ -18,7 +18,7 @@ const AddElementDialog = (props) => {
                         props: get_default_props(value.id),
                         alias: value.alias
                     };
-                    props.setElements([...props.elements, newElement]);
+                    props.addElement(newElement);
                     props.setElementDialog(false);
                     props.setActiveElement(newElement);
                 }}>

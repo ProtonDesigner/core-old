@@ -5,6 +5,8 @@ $sidebar-width: 40px;
     width: 100vw;
     height: 100vh;
 
+    user-select: none;
+
     .homepage__new-project {
         z-index: 4;
         position: absolute;
@@ -29,14 +31,16 @@ $sidebar-width: 40px;
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 0;
+        height: 0;
         background-color: black;
         z-index: 1;
         opacity: 0;
 
         &.show {
             opacity: 0.7;
+            width: 100vw;
+            height: 100vh;
         }
 
         &.above {
@@ -46,10 +50,57 @@ $sidebar-width: 40px;
         transition: opacity 0.3s ease-in-out;
     }
 
-    .homepage__projects {
-        padding-left: $sidebar-width + 15px;
-        padding-top: 15px;
-        z-index: 0;
+    .homepage__quick-area-container {
+        position: absolute;
+        left: $sidebar-width + 15px;
+        top: 20px;
+
+        .homepage__quick-area {
+            background-color: hsl(0, 0%, 15%);
+            padding: 10px;
+            border-radius: 0.7rem;
+            width: fit-content;
+
+            .quick-area__button {
+                padding: 10px;
+                border-radius: 0.5rem;
+
+                cursor: pointer;
+                &.hover {
+                    background-color: hsl(0, 0%, 10%);
+                }
+            }
+        }
+    }
+
+    .homepage__projects-container {
+        position: absolute;
+        left: $sidebar-width + 15px;
+        top: 150px;
+        .homepage__projects {
+            // padding-left: $sidebar-width + 15px;
+            // padding-top: 15px;
+            // padding-bottom: 15px;
+            padding: 15px;
+            background-color: hsl(0, 0%, 15%);
+            border-radius: 0.7rem;
+            width: 90%;
+            z-index: 0;
+    
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+    
+            .homepage__project {
+                padding: 10px;
+                background-color: hsl(0, 0%, 10%);
+                color: white;
+                width: fit-content;
+                border-radius: 0.5rem;
+                user-select: none;
+                cursor: pointer;
+            }
+        }
     }
 
     .homepage__sidebar {

@@ -20,6 +20,7 @@
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
+    "use-keyboard-shortcut": "^1.1.6",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 import "./Homepage.scss";
 
 import Project from "../../utils/project";
+import getProjects from "../../utils/get_projects";
 
 const generateRandomName = () => {
     return uniqueNamesGenerator({
@@ -34,17 +35,11 @@ const Sidebar = (props) => {
             <i class="fa-solid fa-bars"></i>
         </div>
         <SidebarElement name="Home" icon={<i class="fa-solid fa-house"></i>} onClick={() => console.log("yeet")} />
-        <SidebarElement name="New" icon={<i class="fa-solid fa-file-pen"></i>} onClick={() => {
-            props.setNewProjectWinShow(true)
-            props.setBlackScreenCallback(() => {
-                props.setBlackScreen(false);
-            })
-        }} />
     </div>
 }
 
 const ProjectComponent = (props) => {
-    return <div className="homepage__project">
+    return <div className="homepage__project" onClick={props.onClick}>
         <h4>{props.name}</h4>
         <p>By {props.author}</p>
     </div>
@@ -53,12 +48,25 @@ const ProjectComponent = (props) => {
 const ProjectsView = (props) => {
     const [projects, setProjects] = useState([]);
     useEffect(() => {
-        
+		getProjects((projects) => {
+			setProjects(projects)
+		})
     }, [])
-    return <div className="homepage__projects">
-        hello
-    </div>
+    return <div className="homepage__projects-container">
+		<h4>Or open an existing project.</h4>
+		<br/>
+		<div className="homepage__projects">
+			{projects && Object.keys(projects).map(project => {
+				project = projects[project];
+				return <ProjectComponent {...project} onClick={() => {
+					props.setCurrentPageProps({projectName: project.name, ...props.currentPageProps});
+					props.setCurrentPageID(1);
+				}} />
+			})}
+		</div>
+	</div>
 }
+
 
 const CreateNewProjectWindow = (props) => {
     const [projectName, setProjectName] = useState(generateRandomName());
@@ -109,6 +117,23 @@ const BlackScreen = (props) => {
     } />
 }
 
+const QuickArea = (props) => {
+	return <div className="homepage__quick-area-container">
+		<h4>Get started with some quick actions.</h4>
+		<br />
+		<div className="homepage__quick-area">
+			<div className="quick-area__button" onClick={() => {
+				props.setNewProjectWinShow(true)
+				props.setBlackScreenCallback(() => {
+					props.setBlackScreen(false);
+				})
+			}}>
+				<i class="fa-solid fa-plus fa-lg"></i>
+			</div>
+		</div>
+	</div>
+}
+
 export default function Homepage(props) {
     const [newProjectWinShow, setNewProjectWinShow] = useState(false);
     const [blackScreen, setBlackScreen] = useState(false);
@@ -117,16 +142,32 @@ export default function Homepage(props) {
     });
 
     return <div className="homepage">
+		<QuickArea
+			setNewProjectWinShow={setNewProjectWinShow}
+			setBlackScreen={setBlackScreen}
+            setBlackScreenCallback={setBlackScreenCallback}
+		/>
         <Sidebar
-            setNewProjectWinShow={setNewProjectWinShow}
             setCurrentPageID={props.setCurrentPageID}
             blackScreen={blackScreen}
-            setBlackScreen={setBlackScreen}
-            setBlackScreenCallback={setBlackScreenCallback}
         />
         <div className="black__screen" />
-        <ProjectsView setCurrentPageID={props.setCurrentPageID} />
-        <CreateNewProjectWindow setCurrentPageProps={props.setCurrentPageProps} setCurrentPageID={props.setCurrentPageID} show={newProjectWinShow} setBlackScreen={setBlackScreen} />
-        <BlackScreen show={blackScreen} above={newProjectWinShow} callback={blackScreenCallback} />
+        <ProjectsView
+			setCurrentPageID={props.setCurrentPageID}
+			setCurrentPageProps={props.setCurrentPageProps}
+			currentPageProps={props.currentPageProps}
+		/>
+        <CreateNewProjectWindow
+			setCurrentPageProps={props.setCurrentPageProps}
+			setCurrentPageID={props.setCurrentPageID}
+			show={newProjectWinShow}
+			setBlackScreen={setBlackScreen}
+			currentPageProps={props.currentPageProps}
+		/>
+        <BlackScreen
+			show={blackScreen}
+			above={newProjectWinShow}
+			callback={blackScreenCallback}
+		/>
     </div>
 }
