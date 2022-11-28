@@ -24,6 +24,18 @@ export default function Sidebar(props) {
                 return <>
                     <Element setActiveElementUID={setActiveElementUID} uid={element.uid} key={element.uid} onClick={() => {
                         props.setActiveElement(element)
+                        window.updateMenu(
+                            [
+                                {
+                                    label: "File",
+                                    submenu: [
+                                        {
+                                            label: "Exit"
+                                        }
+                                    ]
+                                }
+                            ]
+                        )
                     }} element={element} activeElementUID={activeElementUID} />
                     <div style={{
                         width: '100%',
