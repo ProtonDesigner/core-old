@@ -150,6 +150,7 @@ export default function Homepage(props) {
         <Sidebar
             setCurrentPageID={props.setCurrentPageID}
             blackScreen={blackScreen}
+			setBlackScreen={setBlackScreen}
         />
         <div className="black__screen" />
         <ProjectsView
