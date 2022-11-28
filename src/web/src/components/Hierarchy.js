@@ -20,7 +20,8 @@ export default function Sidebar(props) {
         <div className={`sidebar ${props.darkMode == 1 ? "dark" : "light"}`}>
             <h3 className="sidebar__title">Hierarchy</h3>
             <br />
-            {props.elements && props.elements.map((element) => {
+            {props.elements && Object.keys(props.elements).map((element) => {
+                element = props.elements[element]
                 return <>
                     <Element setActiveElementUID={setActiveElementUID} uid={element.uid} key={element.uid} onClick={() => {
                         props.setActiveElement(element)
@@ -31,6 +32,17 @@ export default function Sidebar(props) {
                                     submenu: [
                                         {
                                             label: "Exit"
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: "Element",
+                                    submenu: [
+                                        {
+                                            label: "Delete",
+                                            click: (menuItem, browserWindow, event) => {
+                                                props.deleteElement(element)
+                                            }
                                         }
                                     ]
                                 }

@@ -20,6 +20,7 @@ function createWindow () {
     win.loadFile(path.join(__dirname, 'web', 'index.html'))
     remote.initialize()
     remote.enable(win.webContents)
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {

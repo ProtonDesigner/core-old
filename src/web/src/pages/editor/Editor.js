@@ -11,7 +11,7 @@ import Project from '../../utils/project';
 import useKeyboardShortcut from "use-keyboard-shortcut"
 
 export default function App(props) {
-    const [elements, setElements] = useState([]);
+    const [elements, setElements] = useState({});
     const [activeElement, setActiveElement] = useState(null);
     const [updatedState, updateState] = useState(1);
     const [darkMode, setDarkMode] = useState(0);
@@ -20,21 +20,14 @@ export default function App(props) {
     const project = new Project(props.projectName);
 
     const { flushHeldKeys } = useKeyboardShortcut(["Control", "S"], shortcutKeys => {
-        project.elements = {}
-        elements.forEach(element => {
-            project.elements[element.uid] = element;
-        })
+        project.elements = elements
         project.saveProject()
     })
 
     // console.log(props.projectName)
     useEffect(() => {
         project.loadProject((projectJSON) => {
-            const elementsList = []
-            Object.keys(projectJSON.elements).map((element) => {
-                elementsList.push(projectJSON.elements[element])
-            })
-            setElements(elementsList)
+            setElements(projectJSON.elements)
         })
     }, [])
     // console.log(project.elements.toString("utf8"))
@@ -45,7 +38,18 @@ export default function App(props) {
 
     const updateElements = (newElement) => {
         project.addElement(newElement)
-        setElements([...elements, newElement]);
+        let newElements = {...elements}
+        newElements[newElement.uid] = newElement
+        setElements(newElements);
+    }
+
+    const deleteElement = (element) => {
+        project.deleteElement(element)
+        let newElements = elements
+        delete newElements[element.uid]
+        setElements(newElements)
+        updateState(updatedState + 1)
+        setActiveElement(null)
     }
 
     // Dark mode code
@@ -65,9 +69,9 @@ export default function App(props) {
 
     return (
         <div className={`app ${darkMode == 1 ? "dark" : "light"}`}>
-            <Topbar darkMode={darkMode} elements={elements} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
-            <AddElementDialog show={showElementDialog} addElement={updateElements} elements={elements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
-            <Sidebar darkMode={darkMode} elements={elements} setActiveElement={setActiveElement} />
+            <Topbar darkMode={darkMode} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
+            <AddElementDialog show={showElementDialog} addElement={updateElements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
+            <Sidebar deleteElement={deleteElement} darkMode={darkMode} elements={elements} setActiveElement={setActiveElement} />
             <Rightbar darkMode={darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
             <Preview darkMode={darkMode} elements={elements} />
         </div>

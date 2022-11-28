@@ -10,7 +10,8 @@ export default function Preview(props) {
         <div className="app__preview">
             <div className="preview__outerbezel">
                 <div className="preview__innerbezel">
-                    {elements && elements.map(element => {
+                    {elements && Object.keys(elements).map(element => {
+                        element = elements[element];
                         const id = element.id;
                         const Component = ELEMENTS_LIST[id]["component"];
                         return <Component key={element.uid} {...element.props} />
