@@ -5,6 +5,8 @@ import "./Homepage.scss";
 import Project from "../../utils/project";
 import getProjects from "../../utils/get_projects";
 
+import Settings from "../settings/Settings";
+
 const generateRandomName = () => {
     return uniqueNamesGenerator({
         dictionaries: [adjectives, colors, animals],
@@ -35,6 +37,11 @@ const Sidebar = (props) => {
             <i class="fa-solid fa-bars"></i>
         </div>
         <SidebarElement name="Home" icon={<i class="fa-solid fa-house"></i>} onClick={() => console.log("yeet")} />
+        <SidebarElement name="Settings" icon={<i class="fa-solid fa-house"></i>} onClick={() => {
+			props.setSettingsShow(!props.settingsShow)
+			props.setBlackScreen(!props.blackScreen)
+			props.setBlackScreenAbove(true);
+		}} />
     </div>
 }
 
@@ -73,6 +80,7 @@ const CreateNewProjectWindow = (props) => {
 
     if (props.show) {
         props.setBlackScreen(true);
+		props.setBlackScreenAbove(true);
     }
 
     return <div className="homepage__new-project" style={{
@@ -136,27 +144,35 @@ const QuickArea = (props) => {
 
 export default function Homepage(props) {
     const [newProjectWinShow, setNewProjectWinShow] = useState(false);
+	const [blackScreenAbove, setBlackScreenAbove] = useState(false);
     const [blackScreen, setBlackScreen] = useState(false);
     const [blackScreenCallback, setBlackScreenCallback] = useState(() => {
         setBlackScreen(false)
     });
+	const [settingsShow, setSettingsShow] = useState(false);
 
     return <div className="homepage">
 		<QuickArea
 			setNewProjectWinShow={setNewProjectWinShow}
 			setBlackScreen={setBlackScreen}
             setBlackScreenCallback={setBlackScreenCallback}
+            darkMode={props.darkMode}
 		/>
         <Sidebar
             setCurrentPageID={props.setCurrentPageID}
             blackScreen={blackScreen}
 			setBlackScreen={setBlackScreen}
-        />
+			setSettingsShow={setSettingsShow}
+			settingsShow={settingsShow}
+			setBlackScreenAbove={setBlackScreenAbove}
+            darkMode={props.darkMode}
+		/>
         <div className="black__screen" />
         <ProjectsView
 			setCurrentPageID={props.setCurrentPageID}
 			setCurrentPageProps={props.setCurrentPageProps}
 			currentPageProps={props.currentPageProps}
+            darkMode={props.darkMode}
 		/>
         <CreateNewProjectWindow
 			setCurrentPageProps={props.setCurrentPageProps}
@@ -164,10 +180,18 @@ export default function Homepage(props) {
 			show={newProjectWinShow}
 			setBlackScreen={setBlackScreen}
 			currentPageProps={props.currentPageProps}
+			setBlackScreenAbove={setBlackScreenAbove}
+            darkMode={props.darkMode}
+		/>
+		<Settings
+			show={settingsShow}
+			setShow={setSettingsShow}
+			setBlackScreenAbove={setBlackScreenAbove}
+            darkMode={props.darkMode}
 		/>
         <BlackScreen
 			show={blackScreen}
-			above={newProjectWinShow}
+			above={blackScreenAbove}
 			callback={blackScreenCallback}
 		/>
     </div>

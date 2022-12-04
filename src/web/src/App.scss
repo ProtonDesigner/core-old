@@ -13,10 +13,25 @@
     &.dark {
         background-color: variables.$dark-mode-background;
         color: variables.$dark-mode-content-color;
+
+        input {
+            border: 5px solid hsl(0, 0%, 5%);
+            color: white;
+            background-color: hsl(0, 0%, 20%);
+        }
     }
 
     &.light {
         background-color: variables.$light-mode-background;
         color: variables.$light-mode-content-color;
+    }
+
+    input {
+        padding: 5px;
+        border-radius: 5rem;
+        outline: 0;
+        border: 5px solid grey;
+        background-color: white;
+        color: black;
     }
 }

@@ -14,7 +14,6 @@ export default function App(props) {
     const [elements, setElements] = useState({});
     const [activeElement, setActiveElement] = useState(null);
     const [updatedState, updateState] = useState(1);
-    const [darkMode, setDarkMode] = useState(0);
     const [showElementDialog, setElementDialog] = useState(false);
 
     const project = new Project(props.projectName);
@@ -56,24 +55,13 @@ export default function App(props) {
 
     console.log(activeElement)
 
-    useEffect(() => {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setDarkMode(1);
-        }
-    }, [])
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        const newColorScheme = event.matches ? "dark" : "light";
-        newColorScheme == "dark" ? setDarkMode(1) : setDarkMode(0);
-    });
-
     return (
-        <div className={`app ${darkMode == 1 ? "dark" : "light"}`}>
-            <Topbar darkMode={darkMode} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
+        <div className={`app ${props.darkMode == 1 ? "dark" : "light"}`}>
+            <Topbar darkMode={props.darkMode} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
             <AddElementDialog show={showElementDialog} addElement={updateElements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
-            <Sidebar deleteElement={deleteElement} darkMode={darkMode} elements={elements} setActiveElement={setActiveElement} />
-            <Rightbar darkMode={darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
-            <Preview darkMode={darkMode} elements={elements} />
+            <Sidebar deleteElement={deleteElement} darkMode={props.darkMode} elements={elements} setActiveElement={setActiveElement} />
+            <Rightbar darkMode={props.darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
+            <Preview darkMode={props.darkMode} elements={elements} />
         </div>
     )
 }
