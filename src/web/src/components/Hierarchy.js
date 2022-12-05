@@ -49,13 +49,13 @@ export default function Sidebar(props) {
                             ]
                         )
                     }} element={element} activeElementUID={activeElementUID} />
-                    <div style={{
+                    {/* <div style={{
                         width: '100%',
                         height: '2.5px',
                         backgroundColor: 'black',
                         paddingTop: '5px',
                         paddingBottom: '5px'
-                    }} />
+                    }} /> */}
                 </>
             })}
         </div>

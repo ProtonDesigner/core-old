@@ -55,6 +55,7 @@ const ProjectComponent = (props) => {
 const ProjectsView = (props) => {
     const [projects, setProjects] = useState([]);
     useEffect(() => {
+        new Project().createDirs()
 		getProjects((projects) => {
 			setProjects(projects)
 		})
@@ -63,20 +64,20 @@ const ProjectsView = (props) => {
 		<h4>Or open an existing project.</h4>
 		<br/>
 		<div className="homepage__projects">
-			{projects && Object.keys(projects).map(project => {
+			{projects ? Object.keys(projects).map(project => {
 				project = projects[project];
 				return <ProjectComponent {...project} onClick={() => {
 					props.setCurrentPageProps({projectName: project.name, ...props.currentPageProps});
 					props.setCurrentPageID(1);
 				}} />
-			})}
+			}) : () => { return <h2>No projects found</h2> }}
 		</div>
 	</div>
 }
 
 
 const CreateNewProjectWindow = (props) => {
-    const [projectName, setProjectName] = useState(generateRandomName());
+    const [projectName, setProjectName] = useState("");
 
     if (props.show) {
         props.setBlackScreen(true);

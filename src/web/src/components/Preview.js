@@ -8,7 +8,7 @@ export default function Preview(props) {
 
     return (
         <div className="app__preview">
-            <div className="preview__outerbezel">
+            <div className={`preview__outerbezel ${props.type}`}>
                 <div className="preview__innerbezel">
                     {elements && Object.keys(elements).map(element => {
                         element = elements[element];

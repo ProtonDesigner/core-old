@@ -8,12 +8,13 @@ class Project {
     constructor(projectName, author) {
         this.name = projectName || "Untitled Project";
         this.author = author || "Default Author";
-        this.elements = {}
+        this.elements = {};
+		this.type = "desktop";
 		
 		this.rootDir = path.join(protonDir, this.name);
         this.assetsDir = path.join(this.rootDir, "assets");
         this.scriptsDir = path.join(this.rootDir, "scripts");
-		this.indexPath = path.join(protonDir, "index.json")
+		this.indexPath = path.join(protonDir, "index.json");
     }
 
     addElement(element) {
@@ -41,7 +42,8 @@ class Project {
 			if (!value[this.name]) {
 				value[this.name] = {
 					name: this.name,
-					author: this.author
+					author: this.author,
+					type: this.type
 				};
 				fs.writeFile(this.indexPath, JSON.stringify(value), (err) => {
 					if (err) throw err;
@@ -56,7 +58,8 @@ class Project {
         fs.writeFile(path.join(homeDir, "Proton Projects", this.name, "project.json"), JSON.stringify({
             name: this.name,
             author: this.author,
-            elements: this.elements
+            elements: this.elements,
+			type: this.type
         }), (err) => {
             if (err) throw err;
             return "OK";
@@ -74,6 +77,7 @@ class Project {
 			self.name = data.name;
 			self.author = data.author;
 			self.elements = data.elements;
+			self.type = data.type;
 			cb(data)
 		})
     }

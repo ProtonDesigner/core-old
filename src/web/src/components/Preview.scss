@@ -10,6 +10,12 @@
     .preview__outerbezel {
         width: 300px;
         height: 600px;
+
+        &.desktop {
+            width: 750px;
+            height: 450px;
+        }
+
         background-color: black;
 
         position: relative;
