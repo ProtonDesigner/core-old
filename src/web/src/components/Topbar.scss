@@ -3,44 +3,26 @@
 .topbar {
     position: absolute;
     width: 100vw;
-    height: variables.$topbar-top;
+    height: variables.$editor-topbar-top;
     background-color: grey;
+    user-select: none;
 
     &.dark {
         background-color: hsl(0, 0%, 15%);
     }
 
-    .play__button {
-        position: relative;
-        width: 90px;
-        height: 45px;
-        background-color: hsl(0, 0%, 11%);
-        text-align: center;
-        border-radius: 0.5rem;
+    // TODO: flexbox, center things using space-evenly
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-
-        .fa-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-
-            color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .create_tab, .code_tab {
+        width: fit-content;
+        padding: 13px;
+        cursor: pointer;
+        &:hover {
+            background-color: hsl(0, 0%, 10%)
         }
     }
-
-    .add__element__button {
-        position: relative;
-        padding: 5px;
-
-        .fa-plus {
-            position: absolute;
-            top: 150%;
-            // left: 50%;
-            transform: translateY(-50%);
-        }
-    }
+    z-index: 1;
 }

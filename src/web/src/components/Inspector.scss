@@ -2,11 +2,11 @@
 
 .rightbar {
     position: absolute;
-    top: variables.$topbar-top;
+    top: variables.$editor-topbar-top;
     right: 0;
 
     width: 200px;
-    height: calc(100vh - variables.$topbar-top);
+    height: calc(100vh - variables.$editor-topbar-top);
     background-color: darkgrey;
     
     text-align: center;

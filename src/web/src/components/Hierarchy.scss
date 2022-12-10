@@ -2,10 +2,8 @@
 
 .sidebar {
     width: 200px;
-    height: calc(100vh - variables.$topbar-top);
+    height: calc(100vh - variables.$editor-topbar-top);
     background-color: darkgrey;
-
-    padding-top: variables.$topbar-top;
 
     .sidebar__title {
         text-align: center;

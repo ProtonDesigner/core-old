@@ -18,6 +18,11 @@ export default function Sidebar(props) {
 
     return (
         <div className={`sidebar ${props.darkMode == 1 ? "dark" : "light"}`}>
+            <div className="add__element__button" onClick={() => {
+                props.setElementDialog(!props.showElementDialog)
+            }}>
+                <i class="fa-solid fa-plus fa-lg"></i>
+            </div>
             <h3 className="sidebar__title">Hierarchy</h3>
             <br />
             {props.elements && Object.keys(props.elements).map((element) => {

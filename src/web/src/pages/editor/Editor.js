@@ -1,67 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import "./Editor.scss"
-import Preview from '../../components/Preview';
-import Rightbar from '../../components/Inspector';
-import Sidebar from '../../components/Hierarchy';
+import React, { useState } from 'react';
+import EditorComponent from './EditorComponent'
 import Topbar from '../../components/Topbar';
-import AddElementDialog from '../../components/AddElementDialog';
-
-import Project from '../../utils/project';
-
-import useKeyboardShortcut from "use-keyboard-shortcut"
+import CodeComponent from './CodeComponent';
 
 export default function App(props) {
-    const [elements, setElements] = useState({});
-    const [activeElement, setActiveElement] = useState(null);
-    const [updatedState, updateState] = useState(1);
-    const [showElementDialog, setElementDialog] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const project = new Project(props.projectName);
+    const [state, setState] = useState({})
 
-    const { flushHeldKeys } = useKeyboardShortcut(["Control", "S"], shortcutKeys => {
-        project.elements = elements
-        project.saveProject()
-    })
+    const pages = [
+        {
+            component: EditorComponent,
+            state: {}
+        },
+        {
+            component: CodeComponent,
+            state: {}
+        }
+    ]
 
-    // console.log(props.projectName)
-    useEffect(() => {
-        project.loadProject((projectJSON) => {
-            setElements(projectJSON.elements)
-        })
-    }, [])
-    // console.log(project.elements.toString("utf8"))
-    
+    console.log(state)
 
-    // setInterval(() => {
-    // }, 500)    
+    const Component = pages[currentPage].component
 
-    const updateElements = (newElement) => {
-        project.addElement(newElement)
-        let newElements = {...elements}
-        newElements[newElement.uid] = newElement
-        setElements(newElements);
+    const setPage = (page_id, state) => {
+        pages[page_id].state = state
+        setCurrentPage(page_id)
     }
 
-    const deleteElement = (element) => {
-        project.deleteElement(element)
-        let newElements = elements
-        delete newElements[element.uid]
-        setElements(newElements)
-        updateState(updatedState + 1)
-        setActiveElement(null)
-    }
-
-    // Dark mode code
-
-    console.log(activeElement)
-
-    return (
-        <div className={`app ${props.darkMode == 1 ? "dark" : "light"}`}>
-            <Topbar darkMode={props.darkMode} showElementDialog={showElementDialog} setElementDialog={setElementDialog} />
-            <AddElementDialog show={showElementDialog} addElement={updateElements} setElementDialog={setElementDialog} setActiveElement={setActiveElement} />
-            <Sidebar deleteElement={deleteElement} darkMode={props.darkMode} elements={elements} setActiveElement={setActiveElement} />
-            <Rightbar darkMode={props.darkMode} activeElement={activeElement} updateState={updateState} updatedState={updatedState} />
-            <Preview darkMode={props.darkMode} elements={elements} />
+    return <>
+        <Topbar darkMode={props.darkMode} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {/* TODO setSate thing */}
+        <div className="editor__container">
+            <Component setCurrentPage={setCurrentPage} state={state} setState={(componentName, stateName, newState) => {
+                let _newState = {...state};
+                if (!_newState[componentName]) {
+                    _newState[componentName] = {}
+                }
+                if (!_newState[componentName][stateName]) {
+                    _newState[componentName][stateName] = {}
+                }
+                _newState[componentName][stateName] = newState;
+                setState({..._newState});
+                console.log(_newState)
+            }} {...props} />
         </div>
-    )
+    </>
 }
