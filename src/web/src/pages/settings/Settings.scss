@@ -1,7 +1,7 @@
 $dialog-width: 700px;
 $dialog-height: 450px;
 
-$sidebar-width: $dialog-width / 3;
+$sidebar-width: calc($dialog-width / 3);
 $sidebar-height: $dialog-height;
 
 .settings {

@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+// const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -60,5 +61,6 @@ module.exports = {
         NODE_ENV: JSON.stringify("production"),
       },
     }),
+    // new MonacoWebpackPlugin()
   ],
 };

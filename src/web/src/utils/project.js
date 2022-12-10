@@ -4,6 +4,11 @@ const path = window.path;
 
 const protonDir = path.join(homeDir, "Proton Projects")
 
+const DEFAULT_SCRIPT = `function main(ctx) {
+	ctx.log("hello world!")
+}
+`
+
 class Project {
     constructor(projectName, author) {
         this.name = projectName || "Untitled Project";
@@ -15,6 +20,7 @@ class Project {
         this.assetsDir = path.join(this.rootDir, "assets");
         this.scriptsDir = path.join(this.rootDir, "scripts");
 		this.indexPath = path.join(protonDir, "index.json");
+		this.mainScript = path.join(this.scriptsDir, "main.js");
     }
 
     addElement(element) {
@@ -32,6 +38,9 @@ class Project {
 		if (!fs.existsSync(this.indexPath)) fs.writeFile(this.indexPath, JSON.stringify({}), (err) => {
 			if (err) throw err;
 		});
+		if (!fs.existsSync(this.mainScript)) fs.writeFile(this.mainScript, DEFAULT_SCRIPT, (err) => {
+			if (err) throw err;
+		})
     }
 
 	addToIndex() {
@@ -78,9 +87,21 @@ class Project {
 			self.author = data.author;
 			self.elements = data.elements;
 			self.type = data.type;
-			cb(data)
+			if(cb) cb(data)
 		})
     }
+
+	getScript(scriptName, cb) {
+		fs.readFile(path.join(this.scriptsDir, scriptName), {encoding: 'utf8'}, (err, data) => {
+			if (err) throw err;
+			if (cb) cb(data)
+		})
+	}
+
+	getScripts(cb) {
+		// TODO: write util func that gets scripts in the current project
+		throw Error("Not Implemented")
+	}
 }
 
 export default Project;

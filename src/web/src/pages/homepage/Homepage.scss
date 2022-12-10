@@ -1,7 +1,7 @@
 $sidebar-width: 40px;
 
 .homepage {
-    background-color: hsl(0, 0%, 25);
+    background-color: hsl(0, 0%, 25%);
     width: 100vw;
     height: 100vh;
 
@@ -105,7 +105,7 @@ $sidebar-width: 40px;
 
     .homepage__sidebar {
         position: absolute;
-        background-color: hsl(0, 0%, 20);
+        background-color: hsl(0, 0%, 20%);
         width: $sidebar-width;
         // padding: 10px;
         height: 100vh;
@@ -123,10 +123,10 @@ $sidebar-width: 40px;
             cursor: pointer;
             user-select: none;
 
-            background-color: hsl(0, 0%, 15);
+            background-color: hsl(0, 0%, 15%);
 
             &:hover {
-                background-color: hsl(0, 0%, 10);
+                background-color: hsl(0, 0%, 10%);
             }
 
             transition: width 0.3s, display 0.3s;
@@ -143,7 +143,7 @@ $sidebar-width: 40px;
             padding: 10px;
 
             &:hover {
-                background-color: hsl(0, 0%, 10);
+                background-color: hsl(0, 0%, 10%);
             }
         }
 

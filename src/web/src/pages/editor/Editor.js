@@ -32,7 +32,7 @@ export default function App(props) {
         <Topbar darkMode={props.darkMode} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         {/* TODO setSate thing */}
         <div className="editor__container">
-            <Component setCurrentPage={setCurrentPage} state={state} setState={(componentName, stateName, newState) => {
+            <Component setCurrentPage={setCurrentPage} state={state} {...props} setState={(componentName, stateName, newState) => {
                 let _newState = {...state};
                 if (!_newState[componentName]) {
                     _newState[componentName] = {}

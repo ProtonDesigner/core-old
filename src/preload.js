@@ -6,6 +6,7 @@ const { BrowserWindow, Menu, MenuItem } = require('@electron/remote')
 window.fs = fs;
 window.homeDir = homeDir;
 window.path = path;
+window.__dirname = __dirname;
 
 window.BrowserWindow = BrowserWindow;
 window.Menu = Menu;
