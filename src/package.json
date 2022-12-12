@@ -6,7 +6,7 @@
   "author": "TechStudent10",
   "license": "MIT",
   "dependencies": {
-    "@electron/remote": "^2.0.8",
+    "@electron/remote": "^2.0.9",
     "electron-squirrel-startup": "^1.0.0",
     "unique-names-generator": "^4.7.1",
     "uuid": "^9.0.0"
