@@ -1,13 +1,30 @@
 @use "../../utils/variables";
+$tabs-height: 30px;
+$tabs-padding: 3px;
+
+$tabs-total-height: $tabs-height + ($tabs-padding * 2);
+
+$files-width: 240px;
 
 .code__comp {
-    .editor__tabs {
-        height: calc(100vh - variables.$editor-topbar-top - 30px);
+    position: relative;
 
+    .editor__tabs {
         .editor__tab {
+            height: $tabs-height;
             padding: 3px;
             width: fit-content;
         }
     }
+
+    .editor__content {
+        position: absolute;
+        height: calc(100vh - variables.$editor-topbar-top - $tabs-total-height);
+        width: calc(100vw - $files-width);
+
+        top: $tabs-total-height;
+        left: $files-width;
+    }
+
     height: calc(100vh - variables.$editor-topbar-top);
 }

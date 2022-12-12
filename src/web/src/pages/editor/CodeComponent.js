@@ -36,20 +36,29 @@ const Tab = (props) => {
 const Tabs = (props) => {
     const [currentTab, setCurrentTab] = useState(props.defaultIndex)
 
-    const CurrentTabComp = props.tabs[currentTab].component
+    // const CurrentTabComp = props.tabs[currentTab].component
 
-    return <div className="editor__tabs">
-        {props.tabs && Object.keys(props.tabs).map((tab_index) => {
-            const tab = props.tabs[tab_index]
-            return <Tab name={tab.filename} onClick={() => setCurrentTab(tab_index)} />
-        })}
-        <CurrentTabComp {...props.tabs[currentTab].props} />
-    </div>
+    return <> 
+        <div className="editor__tabs">
+            {props.tabs && Object.keys(props.tabs).map((tab_index) => {
+                const tab = props.tabs[tab_index]
+                return <Tab name={tab.filename} onClick={() => setCurrentTab(tab_index)} />
+            })}
+        </div>
+        <div className="editor__content">
+            <Editor
+                height="100%"
+                defaultLanguage='javascript'
+                theme= {props.darkMode ? "vs-dark" : "light"}
+            />
+        </div>
+    </>
 }
 
 const CodeComponent = (props) => {
     const [value, setValue] = useState("")
-    const [tabs, setTabs] = useState()
+    const [tabs, setTabs] = useState([])
+    const project = new Project(props.projectName);
     /*
     {
         filename: "main.js",
@@ -68,19 +77,20 @@ const CodeComponent = (props) => {
     
     console.log(props)
     useEffect(() => {
-        const project = new Project(props.projectName);
         project.loadProject()
         project.getScript("main.js", (script) => {
             setValue(script)
+        })
+
+        project.getScripts((files) => {
+            setTabs(files)
         })
     }, [])
     return <div className="code__comp">
         {/* <Editor height="100%" defaultLanguage="javascript" value={value} theme={props.darkMode ? "vs-dark" : "light"} onChange={(newValue, event) => {
             setValue(newValue)
         }} /> */}
-        <Tabs defaultIndex={0} tabs={[
-            
-        ]} />
+        <Tabs defaultIndex={0} tabs={tabs} project={project} darkMode={props.darkMode} />
     </div>
 }
 export default CodeComponent

@@ -94,13 +94,15 @@ class Project {
 	getScript(scriptName, cb) {
 		fs.readFile(path.join(this.scriptsDir, scriptName), {encoding: 'utf8'}, (err, data) => {
 			if (err) throw err;
-			if (cb) cb(data)
+			if (cb) return cb(data)
 		})
 	}
 
 	getScripts(cb) {
-		// TODO: write util func that gets scripts in the current project
-		throw Error("Not Implemented")
+		fs.readdir(this.scriptsDir, (err, files) => {
+			if (err) throw err;
+			if (cb) return cb(files)
+		})
 	}
 }
 
