@@ -1,3 +1,5 @@
+# This version of Proton is to be considered outdated. Please see [#12](https://github.com/ProtonDesigner/core/discussions/12)
+
 <img src="imgs/Proton%20banner.png">
 
 <h1 align="center">Proton</h1>
